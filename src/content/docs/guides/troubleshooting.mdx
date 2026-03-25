@@ -8,7 +8,7 @@ description: The fastest path through the most common installation, runtime, and
 Check these first:
 
 - your workspace path exists
-- Git is installed
+- Git is either already installed or Maabarium was allowed to finish its automatic Git install path
 - the selected folder is a directory, not a file
 - the active blueprint is valid and available
 
@@ -36,6 +36,15 @@ Because Maabarium uses Git-backed experiment flow, any of these can block progre
 - repository not initialized
 - branch creation blocked by permissions or hooks
 - dirty workspace state that conflicts with workflow expectations
+
+If Git is missing entirely:
+
+- the desktop app and CLI should now tell you that directly instead of failing later in the run
+- on supported systems, Maabarium can start an automatic installation path for Git
+- if macOS launches Xcode Command Line Tools installation, finish that installer first, then retry Maabarium
+- if no supported system installer is available, install Git manually and retry the run
+
+If the CLI exits before the workflow starts, read the preflight message first. That usually means Git installation or repository readiness failed before proposal generation even began.
 
 ## Update problems
 

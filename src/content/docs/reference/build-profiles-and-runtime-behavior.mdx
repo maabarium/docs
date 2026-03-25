@@ -1,0 +1,68 @@
+---
+title: Build Profiles and Runtime Behavior
+description: Understand optimized local build modes and the advanced runtime behavior Maabarium now handles under the hood.
+---
+
+# Build profiles and runtime behavior
+
+This page is for contributors and advanced operators who want to understand how Maabarium builds optimized local binaries and how the runtime behaves during real workflow execution.
+
+## Portable optimized builds
+
+Maabarium defines a `release-lto` Cargo profile for optimized local builds that still remain portable across machines in the same target family.
+
+```bash
+cargo build --profile release-lto
+```
+
+Use this when you want a faster local binary without baking in host-specific CPU assumptions.
+
+## Native CPU tuning is opt-in
+
+If you are benchmarking on a fixed machine, you can opt in to native CPU tuning explicitly:
+
+```bash
+RUSTFLAGS="-C target-cpu=native" cargo build --profile release-lto
+```
+
+Keep that mode local. Do not use it for distributed artifacts, CI outputs, or release bundles meant for other systems.
+
+## Git is a runtime dependency
+
+Git is still required for Maabarium's isolated worktree flow.
+
+What changed recently is the startup behavior:
+
+- the CLI checks for Git before starting a workflow
+- the desktop setup flow surfaces Git readiness directly
+- on supported systems, Maabarium can attempt automatic Git installation instead of only telling you to fix it manually
+
+That reduces first-run friction, but Git is still part of the runtime contract.
+
+## macOS workspace materialization
+
+On macOS, Maabarium now prefers APFS-friendly copy-on-write behavior for sandbox and workspace materialization where that is safe. Other platforms keep the portable fallback path.
+
+This is mostly an internal optimization, but it matters because large local repositories can feel more responsive when repeated full-tree duplication is avoided.
+
+## Run performance summaries
+
+CLI runs now end with an aggregated timing summary. Expect phase totals, average iteration duration, and proposal-failure counters rather than only a single success or failure line.
+
+This is the quickest way to understand whether a workflow was slow because of proposal generation, evaluation, iteration count, or repeated failures.
+
+## Worktree and winner behavior
+
+The runtime now does a better job of reusing detached experiment worktrees and of making retained-versus-rejected outcomes explicit.
+
+That shows up in two places:
+
+- more predictable Git-backed execution behavior under the hood
+- clearer retained winner context in the desktop console overview
+
+## Technical references
+
+If you need implementation-level detail, continue to the technical docs in the main repository:
+
+- [Build Profiles](https://github.com/maabarium/core/blob/master/maabarium/docs/BUILD_PROFILES.md)
+- [Architecture](https://github.com/maabarium/core/blob/master/maabarium/docs/ARCHITECTURE.md)

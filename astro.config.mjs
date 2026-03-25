@@ -87,6 +87,10 @@ export default defineConfig({
               label: "App Data and Paths",
             },
             {
+              slug: "reference/build-profiles-and-runtime-behavior",
+              label: "Build Profiles and Runtime Behavior",
+            },
+            {
               slug: "reference/privacy-and-analytics",
               label: "Privacy and Analytics",
             },

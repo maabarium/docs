@@ -19,6 +19,7 @@ The runtime logic in `maabarium-core` is responsible for:
 - engine orchestration
 - blueprint parsing
 - evaluator execution
+- Git dependency readiness and install guidance
 - git and worktree flow
 - persistence
 - logging and secrets handling
@@ -26,11 +27,19 @@ The runtime logic in `maabarium-core` is responsible for:
 ## Example CLI exploration
 
 ```bash
-cargo run -p maabarium-cli -- --help
-cargo test -p maabarium-core
+cargo run -p maabarium-cli -- run blueprints/example.toml --db data/maabarium.db
+cargo run -p maabarium-cli -- status --db data/maabarium.db
 ```
 
 Those commands are most relevant for contributors and advanced operators.
+
+## What a CLI run does now
+
+Before a workflow starts, the CLI checks whether Git is available. If Git is missing, Maabarium reports that directly and attempts automatic installation through a supported system installer when possible.
+
+After a run finishes, the CLI prints an aggregated timing summary. That summary rolls up phase totals, average iteration duration, and proposal-failure counters so you can inspect run cost without manually combining log lines.
+
+For portable optimized local binaries and deeper runtime details, continue into [Build Profiles and Runtime Behavior](/reference/build-profiles-and-runtime-behavior).
 
 ## When to prefer desktop
 

@@ -13,6 +13,12 @@ curl -fsSL https://downloads.maabarium.com/install.sh | sh
 
 That path is best when you want the current released build quickly.
 
+## What the install script does
+
+On macOS, the published `install.sh` is generated from release metadata. It reads `latest.json`, selects the correct signed app bundle for your architecture, downloads it from the official release origin, and installs the app into `/Applications`.
+
+If Git is missing, Maabarium now detects that during the install or first-run path and attempts to install it automatically through a supported system installer when possible.
+
 ## Download releases directly
 
 Release artifacts are published from the main repository releases page:
@@ -33,6 +39,20 @@ pnpm install --frozen-lockfile
 pnpm build
 ```
 
+For an optimized local build that stays portable across machines with the same target family:
+
+```bash
+cargo build --profile release-lto
+```
+
+For host-specific benchmarking or personal local builds only:
+
+```bash
+RUSTFLAGS="-C target-cpu=native" cargo build --profile release-lto
+```
+
+Distributed artifacts should keep the portable `release-lto` profile rather than the native-tuned variant.
+
 ## What gets installed
 
 A standard desktop install gives you:
@@ -45,7 +65,7 @@ The CLI may also be bundled as a desktop resource depending on the release packa
 
 ## Recommended prerequisites
 
-- Git installed and available on your `PATH`
+- Git is still required for Git-backed experiment worktrees, but Maabarium now detects when it is missing and can install it automatically through a supported system installer on many machines.
 - A workspace folder where Maabarium can create and manage Git-backed experiment worktrees
 - Local model tooling or provider credentials, depending on how you plan to run experiments
 

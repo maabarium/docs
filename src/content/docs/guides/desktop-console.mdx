@@ -12,7 +12,7 @@ The sticky top bar gives you fast movement across:
 - overview metrics
 - console activity
 - workflow library
-- maintenance tools
+- maintenance tools through a direct Maintenance jump target
 
 It also keeps the active workflow, run controls, and workflow actions visible.
 
@@ -21,7 +21,7 @@ It also keeps the active workflow, run controls, and workflow actions visible.
 The overview section surfaces high-signal metrics first:
 
 - latest score
-- winner score
+- winner score, including retained-winner context when available
 - average iteration behavior
 - token usage
 - CPU load and telemetry health
@@ -36,7 +36,7 @@ The console area is where you spend most of your time during an active run. Expe
 - proposal review
 - experiment history
 - research evidence
-- hardware and runtime signals
+- runtime signals, Git readiness state, and LoRA runtime metadata when relevant
 
 ## Workflow library
 
@@ -54,6 +54,7 @@ Use it when you need to:
 The maintenance section sits below the workflow library and groups operational tasks that matter after initial setup:
 
 - readiness center checks
+- Git readiness and installer details when Git is missing
 - branch cleanup previews
 - persisted stack summaries
 

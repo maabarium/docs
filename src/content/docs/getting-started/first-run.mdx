@@ -8,6 +8,7 @@ description: Go from installed to a real Maabarium run with a clean first-use ch
 On first launch, use the setup flow to confirm:
 
 - your default workspace path
+- Git readiness and any automatic installation prompt if Git is missing
 - local model availability if you are using Ollama or another local runtime
 - any provider credentials needed for the blueprint you want to run
 
@@ -19,13 +20,17 @@ Start with one of the bundled workflow blueprints from the workflow library. If 
 
 When Maabarium asks where to run the workflow, point it at a real project directory. If the folder is not already a Git repository, Maabarium can initialize one for you so future branching and evaluation steps behave correctly.
 
+If Git itself is missing, the desktop setup flow or CLI run path should tell you that directly. On supported systems, Maabarium will attempt to install Git automatically instead of failing silently.
+
 ## 4. Start the run
 
 Use the desktop Run Flow action or the CLI if you prefer terminals.
 
 ```bash
-cargo run -p maabarium-cli -- --help
+cargo run -p maabarium-cli -- run blueprints/example.toml --db data/maabarium.db
 ```
+
+CLI runs now perform a Git preflight before the workflow starts. After the run finishes, the CLI also prints an aggregated timing summary so you can see phase totals and average iteration cost without digging through raw logs.
 
 If you are using the desktop app, watch the console section for:
 
@@ -41,6 +46,7 @@ A successful first run should leave you with visible evidence, not just a green 
 - persisted experiments
 - proposals or evaluation logs
 - an updated Git workspace or branch history
+- a CLI timing summary if you launched the run from the terminal
 - enough context to understand why the result was accepted or rejected
 
 ## If the first run fails
