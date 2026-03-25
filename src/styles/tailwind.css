@@ -1,0 +1,33 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .site-container {
+    @apply mx-auto w-full max-w-7xl px-6 md:px-8;
+  }
+
+  .site-header {
+    transition:
+      background-color 220ms ease,
+      border-color 220ms ease,
+      box-shadow 220ms ease,
+      transform 220ms ease;
+  }
+
+  .site-header__nav-shell {
+    transition:
+      background-color 220ms ease,
+      border-color 220ms ease,
+      box-shadow 220ms ease,
+      transform 220ms ease;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-teal-300/50 bg-teal-400 px-5 py-3 text-sm font-black text-slate-950 transition hover:brightness-110;
+    box-shadow: 0 0 32px rgba(45, 212, 191, 0.2);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-black text-white transition hover:border-teal-300/40 hover:bg-white/10;
+  }
+}

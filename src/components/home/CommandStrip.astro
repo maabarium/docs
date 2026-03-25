@@ -1,0 +1,76 @@
+---
+const commands = [
+  {
+    label: "Install",
+    summary: "Use the hosted installer for the latest public desktop build.",
+    command: "curl -fsSL https://downloads.maabarium.com/install.sh | sh",
+    href: "/getting-started/install/",
+  },
+  {
+    label: "Run",
+    summary: "Inspect the installed CLI entrypoint before running workflows from a terminal.",
+    command: "maabarium --help",
+    href: "/getting-started/first-run/",
+  },
+  {
+    label: "Update",
+    summary: "Rebuild from source after pulling the latest workspace changes.",
+    command: "git pull && cargo build --workspace --locked",
+    href: "/guides/updates-and-release-channels/",
+  },
+];
+---
+
+<div class="docs-home-section docs-home-section">
+  <div class="docs-home-eyebrow">Command strip</div>
+  <h2>Keep the most useful commands visible.</h2>
+  <p>
+    This is the fast path for readers who already know what they are doing and
+    just need the right command in front of them.
+  </p>
+</div>
+
+<div class="docs-command-strip">
+  {commands.map((item) => (
+    <section class="docs-command-card">
+      <div class="docs-command-card__top">
+        <div>
+          <div class="docs-command-card__eyebrow">{item.label}</div>
+          <h3>{item.summary}</h3>
+        </div>
+        <button type="button" class="docs-command-card__copy" data-copy-command={item.command}>
+          Copy
+        </button>
+      </div>
+      <pre><code>{item.command}</code></pre>
+      <a class="docs-command-card__link" href={item.href}>Open related docs</a>
+    </section>
+  ))}
+</div>
+
+<script is:inline>
+  const copyButtons = Array.from(
+    document.querySelectorAll("[data-copy-command]"),
+  );
+
+  for (const button of copyButtons) {
+    button.addEventListener("click", async () => {
+      const command = button.getAttribute("data-copy-command");
+      if (!command) return;
+
+      try {
+        await navigator.clipboard.writeText(command);
+        const previous = button.textContent;
+        button.textContent = "Copied";
+        window.setTimeout(() => {
+          button.textContent = previous;
+        }, 1400);
+      } catch {
+        button.textContent = "Failed";
+        window.setTimeout(() => {
+          button.textContent = "Copy";
+        }, 1400);
+      }
+    });
+  }
+</script>

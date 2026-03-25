@@ -1,0 +1,36 @@
+---
+title: Contributing to Docs
+description: How to improve the Maabarium docs site without breaking the experience for other readers.
+---
+
+This site is intended to be community-managed. The goal is not just correctness, but clarity.
+
+## What good documentation changes do
+
+- reduce ambiguity for first-time users
+- keep advanced behavior discoverable for power users
+- preserve alignment with the actual product and release flow
+- use screenshots and command snippets when they remove guesswork
+
+## Before you open a pull request
+
+1. Read the root [CONTRIBUTING.md](https://github.com/maabarium/docs/blob/master/CONTRIBUTING.md).
+2. Build the site locally.
+3. Check that your changes are still understandable to someone who has not read the codebase.
+4. Verify links and commands.
+
+## Content standards
+
+- prefer direct, operational language
+- explain why a step exists, not just what to click
+- avoid hiding important caveats in footnotes
+- keep screenshots current with the shipping UI
+
+## Local validation
+
+```bash
+pnpm install
+pnpm build
+```
+
+Use `pnpm dev` while writing.

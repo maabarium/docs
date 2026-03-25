@@ -1,0 +1,46 @@
+---
+title: What Maabarium Is
+description: A practical introduction to Maabarium for people evaluating whether it fits their workflow.
+---
+
+Maabarium is an open-source autonomous research lab built around a simple loop:
+
+1. Propose a change.
+2. Apply it in an isolated Git-backed workspace.
+3. Evaluate the result.
+4. Keep the winner or reject it.
+5. Persist the traces, logs, scores, and outcomes.
+
+That loop matters because it keeps experimentation disciplined. You are not just prompting a model and hoping for the best. You are operating a system that records what changed, how it was evaluated, and what survived.
+
+## Who this is for
+
+Maabarium works best for:
+
+- builders iterating on prompts, adapters, code, and research workflows
+- teams who want a visible record of why a result was kept
+- people who prefer local-first tooling and Git-native workflows
+
+## What the desktop app gives you
+
+The desktop app is the easiest way to operate Maabarium day to day. It gives you:
+
+- live workflow controls
+- visible telemetry and run analytics
+- workflow library browsing
+- readiness checks and maintenance actions
+- persisted history and logs in one place
+
+![Maabarium desktop console](/images/screenshots/console.png)
+
+## What power users still get
+
+This is not a simplified wrapper that hides the internals. You still have direct access to:
+
+- blueprint files
+- CLI execution
+- persisted runtime files
+- logs and experiment history
+- Git workspaces and branches created during runs
+
+If you want the deeper system details, continue into [Blueprint Reference](/reference/blueprint-reference/) and [CLI and Runtime](/reference/cli-and-runtime/).

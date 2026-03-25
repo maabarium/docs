@@ -1,0 +1,39 @@
+---
+title: Blueprint Reference
+description: A user-facing map of what blueprints control and when to reach for the deep technical spec.
+---
+
+Blueprints define how Maabarium runs a workflow. This page is intentionally user-facing. If you need the full contract, read the repository technical spec as well.
+
+## At a glance
+
+A blueprint usually answers these questions:
+
+- What repository or workspace is this workflow operating on?
+- Which models or providers are involved?
+- How are proposals generated?
+- How are results evaluated?
+- What determines a winner?
+
+## Minimal mental model
+
+Think of a blueprint as a checked-in workflow plan, not just a prompt file.
+
+```toml
+[blueprint]
+name = "example"
+
+[domain]
+repo_path = "/path/to/workspace"
+```
+
+The real files are richer than this, but the important part is that they are explicit and reviewable.
+
+## For advanced readers
+
+Technical references in the core repository:
+
+- [Blueprint spec](https://github.com/maabarium/core/blob/master/maabarium/docs/BLUEPRINT_SPEC.md)
+- [Architecture](https://github.com/maabarium/core/blob/master/maabarium/docs/ARCHITECTURE.md)
+
+Use those when you need implementation-level detail.

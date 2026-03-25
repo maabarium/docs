@@ -1,0 +1,54 @@
+---
+title: Install
+description: Install Maabarium from the signed release flow or build it locally from source.
+---
+
+## Fastest path
+
+Use the install script hosted from the official downloads domain:
+
+```bash
+curl -fsSL https://downloads.maabarium.com/install.sh | sh
+```
+
+That path is best when you want the current released build quickly.
+
+## Download releases directly
+
+Release artifacts are published from the main repository releases page:
+
+- [Latest release](https://github.com/maabarium/core/releases/latest)
+- Install script: `https://downloads.maabarium.com/install.sh`
+
+## Build from source
+
+If you want full control over the workspace, build from source:
+
+```bash
+git clone https://github.com/maabarium/core.git
+cd core/maabarium
+cargo build --workspace --locked
+cd crates/maabarium-desktop
+pnpm install --frozen-lockfile
+pnpm build
+```
+
+## What gets installed
+
+A standard desktop install gives you:
+
+- the desktop application
+- the embedded runtime logic from `maabarium-core`
+- bundled blueprint resources used by the desktop shell
+
+The CLI may also be bundled as a desktop resource depending on the release packaging flow.
+
+## Recommended prerequisites
+
+- Git installed and available on your `PATH`
+- A workspace folder where Maabarium can create and manage Git-backed experiment worktrees
+- Local model tooling or provider credentials, depending on how you plan to run experiments
+
+## Next step
+
+Continue to [Run your first workflow](/getting-started/first-run/) to validate that your installation is actually usable, not just present.

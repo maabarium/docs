@@ -1,0 +1,30 @@
+---
+const latestReleaseUrl = "https://github.com/maabarium/core/releases/latest";
+const latestDownloadUrl = "https://downloads.maabarium.com/install.sh";
+---
+
+<div id="docs-preview-banner" class="docs-preview-banner" hidden>
+  <div class="docs-preview-banner__eyebrow">Preview deployment</div>
+  <div class="docs-preview-banner__body">
+    <div>
+      <h2>You are viewing a preview build of the docs site.</h2>
+      <p>
+        Before sharing this version, compare it against the latest release notes
+        and the current public install path.
+      </p>
+    </div>
+    <div class="docs-preview-banner__actions">
+      <a href={latestReleaseUrl} target="_blank" rel="noreferrer">Release notes</a>
+      <a href={latestDownloadUrl} target="_blank" rel="noreferrer">Latest download</a>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  const previewBanner = document.getElementById("docs-preview-banner");
+  if (previewBanner) {
+    const hostname = window.location.hostname;
+    const isProductionHost = hostname === "docs.maabarium.com";
+    previewBanner.hidden = isProductionHost;
+  }
+</script>

@@ -1,0 +1,57 @@
+---
+title: Troubleshooting
+description: The fastest path through the most common installation, runtime, and workflow failures.
+---
+
+## Nothing runs
+
+Check these first:
+
+- your workspace path exists
+- Git is installed
+- the selected folder is a directory, not a file
+- the active blueprint is valid and available
+
+## A run fails immediately
+
+Common causes:
+
+- missing credentials
+- unavailable local model runtime
+- invalid workspace state
+- blueprint configuration mismatch
+
+## The desktop app looks healthy, but results do not persist
+
+Verify:
+
+- the app can write to its configured data and log paths
+- the workspace is not on a locked or read-only volume
+- the run completed far enough to generate persisted artifacts
+
+## Git-related failures
+
+Because Maabarium uses Git-backed experiment flow, any of these can block progress:
+
+- repository not initialized
+- branch creation blocked by permissions or hooks
+- dirty workspace state that conflicts with workflow expectations
+
+## Update problems
+
+If updates fail:
+
+- confirm you are on the expected release channel
+- verify network access to the update origin
+- retry from a stable network before assuming package corruption
+
+## When to escalate
+
+If you still cannot resolve the problem, collect:
+
+- the exact workflow used
+- the visible error message
+- relevant log lines
+- whether the issue reproduces in both desktop and CLI paths
+
+That gives maintainers a realistic chance of reproducing the issue.

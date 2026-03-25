@@ -1,0 +1,116 @@
+---
+interface BlueprintFallback {
+  title: string;
+  description: string;
+  kind: string;
+}
+
+interface BlueprintSource {
+  slug: string;
+  rawUrl: string;
+  href: string;
+  fallback: BlueprintFallback;
+}
+
+const blueprintSources: BlueprintSource[] = [
+  {
+    slug: "code-quality",
+    rawUrl:
+      "https://raw.githubusercontent.com/maabarium/core/master/maabarium/blueprints/code-quality.toml",
+    href:
+      "https://github.com/maabarium/core/blob/master/maabarium/blueprints/code-quality.toml",
+    fallback: {
+      title: "code-quality",
+      description:
+        "Improve correctness, readability, and maintainability across production codebases.",
+      kind: "template",
+    },
+  },
+  {
+    slug: "general-research",
+    rawUrl:
+      "https://raw.githubusercontent.com/maabarium/core/master/maabarium/blueprints/general-research.toml",
+    href:
+      "https://github.com/maabarium/core/blob/master/maabarium/blueprints/general-research.toml",
+    fallback: {
+      title: "general-research",
+      description:
+        "Research any topic with grounded synthesis, source tracking, and explicit citations for major claims.",
+      kind: "template",
+    },
+  },
+  {
+    slug: "product-builder",
+    rawUrl:
+      "https://raw.githubusercontent.com/maabarium/core/master/maabarium/blueprints/product-builder.toml",
+    href:
+      "https://github.com/maabarium/core/blob/master/maabarium/blueprints/product-builder.toml",
+    fallback: {
+      title: "product-builder",
+      description:
+        "Build and evolve an entire software application with product strategy, implementation, and verification working as one loop.",
+      kind: "template",
+    },
+  },
+  {
+    slug: "prompt-improvement",
+    rawUrl:
+      "https://raw.githubusercontent.com/maabarium/core/master/maabarium/blueprints/prompt-improvement.toml",
+    href:
+      "https://github.com/maabarium/core/blob/master/maabarium/blueprints/prompt-improvement.toml",
+    fallback: {
+      title: "prompt-improvement",
+      description:
+        "Improve prompt clarity, specificity, and usability across reusable prompt assets.",
+      kind: "template",
+    },
+  },
+];
+
+function parseTomlValue(source: string, key: string): string | null {
+  const match = source.match(new RegExp(`^${key}\\s*=\\s*"([^"]+)"`, "m"));
+  return match?.[1] ?? null;
+}
+
+const blueprints = await Promise.all(
+  blueprintSources.map(async (source) => {
+    try {
+      const response = await fetch(source.rawUrl);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const text = await response.text();
+      return {
+        title: parseTomlValue(text, "name") ?? source.fallback.title,
+        description:
+          parseTomlValue(text, "description") ?? source.fallback.description,
+        kind: parseTomlValue(text, "kind") ?? source.fallback.kind,
+        href: source.href,
+      };
+    } catch {
+      return {
+        ...source.fallback,
+        href: source.href,
+      };
+    }
+  }),
+);
+---
+
+<div class="docs-home-section">
+  <div class="docs-home-eyebrow">Recommended blueprints</div>
+  <h2>Start from bundled workflow templates instead of a blank page.</h2>
+  <p>
+    These summaries are pulled from the bundled blueprint templates, then paired
+    with direct links to the source files so readers can move from explanation to
+    exact configuration.
+  </p>
+</div>
+
+<div class="docs-home-card-grid docs-home-card-grid--secondary">
+  {blueprints.map((blueprint) => (
+    <a class="docs-home-link-card" href={blueprint.href} target="_blank" rel="noreferrer">
+      <div class="docs-home-link-card__eyebrow">{blueprint.kind}</div>
+      <h3>{blueprint.title}</h3>
+      <p>{blueprint.description}</p>
+    </a>
+  ))}
+</div>

@@ -1,0 +1,249 @@
+---
+title: Maabarium Docs
+description: Learn how to install, run, and extend Maabarium without losing sight of the power-user details.
+template: splash
+hero:
+  title: Run your own autonomous research lab.
+  tagline: Install Maabarium, run a first workflow, then go deeper into blueprints, runtime paths, and release behavior.
+  image:
+    html: '<img src="/images/screenshots/console.png" alt="Maabarium desktop console showing the console overview." />'
+  actions:
+    - text: Install Maabarium
+      link: /getting-started/install/
+      variant: primary
+      icon: right-arrow
+    - text: Run your first workflow
+      link: /getting-started/first-run/
+      variant: secondary
+pagefind: true
+---
+
+import CommandStrip from "../../components/home/CommandStrip.astro";
+import PreviewBanner from "../../components/home/PreviewBanner.astro";
+import RecommendedBlueprints from "../../components/home/RecommendedBlueprints.astro";
+
+<PreviewBanner />
+
+<div class="docs-home-section docs-home-section">
+  <div class="docs-home-eyebrow">Choose your path</div>
+  <h2>Start where your question starts.</h2>
+  <p>
+    Get moving quickly if you are new, or jump straight to the product surface
+    you need if you already know how you want to operate Maabarium.
+  </p>
+</div>
+
+<div class="docs-home-card-grid">
+  <a class="docs-home-link-card" href="/getting-started/install/">
+    <div class="docs-home-link-card__eyebrow">Start Here</div>
+    <h3>Install the current build</h3>
+    <p>Use the hosted install script or jump to the latest signed release.</p>
+  </a>
+  <a class="docs-home-link-card" href="/getting-started/first-run/">
+    <div class="docs-home-link-card__eyebrow">First Use</div>
+    <h3>Run a workflow end to end</h3>
+    <p>Validate setup, workspace readiness, and the keep-winner loop.</p>
+  </a>
+  <a class="docs-home-link-card" href="/guides/desktop-console/">
+    <div class="docs-home-link-card__eyebrow">Operate</div>
+    <h3>Understand the desktop console</h3>
+    <p>
+      Read the UI the way the product intends: overview, console, blueprints,
+      maintenance.
+    </p>
+  </a>
+  <a class="docs-home-link-card" href="/guides/troubleshooting/">
+    <div class="docs-home-link-card__eyebrow">Recover</div>
+    <h3>Fix the common failures fast</h3>
+    <p>
+      Go directly to environment, provider, workspace, and updater diagnostics.
+    </p>
+  </a>
+</div>
+
+<CommandStrip />
+
+## Read this site in layers
+
+This documentation is designed for two kinds of readers at the same time:
+
+- If you are getting started, follow the Start Here section in order.
+- If you are already comfortable with local AI tools, jump into the Guides and Reference sections.
+- If you are contributing content, head to Community.
+
+<div class="docs-home-section">
+  <div class="docs-home-eyebrow">Product areas</div>
+  <h2>See the main operating surfaces before you drill into the docs.</h2>
+  <p>
+    These panels link the homepage directly to the parts of Maabarium that most
+    users need to orient around: analytics, workflow configuration, and the
+    persisted decision trail.
+  </p>
+</div>
+
+<div class="docs-home-showcase docs-home-showcase--product-areas">
+  <a
+    class="docs-home-shot docs-home-shot--wide docs-home-shot--hero"
+    href="/guides/desktop-console/"
+  >
+    <div class="docs-home-shot__copy">
+      <div class="docs-home-shot__eyebrow">Overview and Console</div>
+      <h3>
+        Run analytics, active workflow state, and recent experiment history.
+      </h3>
+      <p>
+        Start with the desktop console guide if you want the highest-signal
+        explanation of what the app is showing you.
+      </p>
+    </div>
+    <img
+      src="/images/screenshots/console.png"
+      alt="Maabarium console showing navigation, active workflow, and run analytics."
+      class="docs-home-shot__image docs-home-shot__image--top"
+    />
+  </a>
+  <div class="docs-home-shot-stack docs-home-shot-stack--product-areas">
+    <a
+      class="docs-home-shot docs-home-shot--stack"
+      href="/guides/workflows-and-blueprints/"
+    >
+      <div class="docs-home-shot__copy">
+        <div class="docs-home-shot__eyebrow">Blueprints</div>
+        <h3>See active blueprint context and configuration surfaces.</h3>
+      </div>
+      <img
+        src="/images/screenshots/console-blueprint.png"
+        alt="Maabarium Phase 3 console showing active blueprint details and configuration cards."
+        class="docs-home-shot__image docs-home-shot__image--right"
+      />
+    </a>
+    <a
+      class="docs-home-shot docs-home-shot--stack"
+      href="/reference/cli-and-runtime/"
+    >
+      <div class="docs-home-shot__copy">
+        <div class="docs-home-shot__eyebrow">Decision Trails</div>
+        <h3>
+          Inspect council debate, experiment console output, and retained
+          outcomes.
+        </h3>
+      </div>
+      <img
+        src="/images/screenshots/console-council.png"
+        alt="Maabarium Phase 3 console showing council debate and experiment console output."
+        class="docs-home-shot__image docs-home-shot__image--left"
+      />
+    </a>
+  </div>
+</div>
+
+## What you can do with Maabarium
+
+- Run proposal, evaluation, and keep-or-reject loops in isolated Git-backed workspaces.
+- Keep decision trails visible through the desktop console, logs, persisted history, and runtime artifacts.
+- Work with blueprint-driven workflows instead of hand-wiring every experiment.
+- Stay local-first while still supporting multiple model and provider configurations.
+
+<RecommendedBlueprints />
+
+<div class="docs-home-section">
+  <div class="docs-home-eyebrow">Open-source jump links</div>
+  <h2>
+    Use the docs site as the hub, then jump into the repo when you need
+    source-level detail.
+  </h2>
+</div>
+
+<div class="docs-home-card-grid docs-home-card-grid--secondary">
+  <a
+    class="docs-home-link-card"
+    href="https://github.com/maabarium/core/releases/latest"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <div class="docs-home-link-card__eyebrow">Releases</div>
+    <h3>Latest desktop release</h3>
+    <p>
+      Open the current signed release page and compare it with the install path
+      documented here.
+    </p>
+  </a>
+  <a
+    class="docs-home-link-card"
+    href="https://github.com/maabarium/core/tree/master/maabarium/blueprints"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <div class="docs-home-link-card__eyebrow">Blueprint Library</div>
+    <h3>Browse bundled blueprint files</h3>
+    <p>Read the exact workflow templates that ship with the project.</p>
+  </a>
+  <a
+    class="docs-home-link-card"
+    href="https://github.com/maabarium/core/blob/master/maabarium/blueprints/example.toml"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <div class="docs-home-link-card__eyebrow">Example</div>
+    <h3>Open a minimal blueprint example</h3>
+    <p>
+      Use a simple blueprint as the fastest bridge between the user docs and the
+      raw config shape.
+    </p>
+  </a>
+  <a
+    class="docs-home-link-card"
+    href="https://github.com/maabarium/core/blob/master/maabarium/blueprints/general-research.toml"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <div class="docs-home-link-card__eyebrow">Research</div>
+    <h3>Inspect a real research workflow</h3>
+    <p>
+      Compare the user-facing workflow guidance with a concrete bundled research
+      blueprint.
+    </p>
+  </a>
+</div>
+
+<div class="docs-reading-paths">
+  <div class="docs-home-section docs-home-section--tight">
+    <div class="docs-home-eyebrow">Suggested reading paths</div>
+    <h2>Pick the track that matches how you want to use Maabarium.</h2>
+    <p>
+      These paths group the docs by intent so the last section of the homepage
+      reads like navigation, not like low-contrast markdown left on the page.
+    </p>
+  </div>
+
+  <div class="docs-reading-paths__grid">
+    <section class="docs-reading-paths__card">
+      <div class="docs-reading-paths__eyebrow">Get productive quickly</div>
+      <ol>
+        <li><a href="/getting-started/overview/">What Maabarium is</a></li>
+        <li><a href="/getting-started/install/">Install</a></li>
+        <li><a href="/getting-started/first-run/">Run your first workflow</a></li>
+        <li><a href="/guides/desktop-console/">Desktop console</a></li>
+      </ol>
+    </section>
+
+    <section class="docs-reading-paths__card">
+      <div class="docs-reading-paths__eyebrow">Operate it seriously</div>
+      <ol>
+        <li><a href="/guides/workflows-and-blueprints/">Workflows and blueprints</a></li>
+        <li><a href="/guides/models-and-providers/">Models and providers</a></li>
+        <li><a href="/guides/updates-and-release-channels/">Updates and release channels</a></li>
+        <li><a href="/reference/app-data-and-paths/">App data and paths</a></li>
+      </ol>
+    </section>
+
+    <section class="docs-reading-paths__card">
+      <div class="docs-reading-paths__eyebrow">Help maintain the docs</div>
+      <ol>
+        <li><a href="/community/contributing/">Contributing to docs</a></li>
+        <li>Open the repository linked in the header.</li>
+        <li>Use the pull request template and the preview build to validate changes.</li>
+      </ol>
+    </section>
+  </div>
+</div>

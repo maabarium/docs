@@ -1,0 +1,40 @@
+---
+title: Updates and Release Channels
+description: Understand how desktop updates, release channels, and reminders behave.
+---
+
+The desktop app supports channel-aware update behavior so you can balance stability and freshness.
+
+## Common update preferences
+
+- stay on the stable channel for production use
+- use a non-stable channel only when you expect change and want earlier feedback
+- use remind-later sparingly and clear reminders once you are ready to evaluate the update
+
+## What the updater needs
+
+Updater behavior depends on release metadata, the update base URL, and the signing public key embedded or provided for the app build.
+
+For most users, this is already configured by the release pipeline. Advanced operators and contributors may care about:
+
+- update manifest location
+- release channel selection
+- signing key and update verification
+
+## What to expect in the UI
+
+The updates card lets you:
+
+- check for updates manually
+- install an available update
+- change preferred update channel
+- remind later or clear a reminder
+
+## When to update
+
+Update after a completed run rather than mid-investigation. The safest rhythm is:
+
+1. finish or stop the current run cleanly
+2. confirm important logs or outputs are persisted
+3. install the update
+4. run one known workflow as a sanity check

@@ -1,0 +1,37 @@
+---
+title: CLI and Runtime
+description: Know when to use the CLI, what the runtime is responsible for, and how the desktop app relates to it.
+---
+
+## Desktop and CLI are complementary
+
+The desktop app is the best operational surface for most people. The CLI remains useful when you want:
+
+- terminal-driven automation
+- direct scripting
+- lower-level debugging
+- to run in environments without the desktop shell
+
+## What the core runtime owns
+
+The runtime logic in `maabarium-core` is responsible for:
+
+- engine orchestration
+- blueprint parsing
+- evaluator execution
+- git and worktree flow
+- persistence
+- logging and secrets handling
+
+## Example CLI exploration
+
+```bash
+cargo run -p maabarium-cli -- --help
+cargo test -p maabarium-core
+```
+
+Those commands are most relevant for contributors and advanced operators.
+
+## When to prefer desktop
+
+Prefer the desktop path when you want faster visibility and lower cognitive load while still keeping access to logs, telemetry, workflow selection, and persisted history.

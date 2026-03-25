@@ -1,0 +1,100 @@
+---
+import { Image } from 'astro:assets';
+
+const { data } = Astro.locals.starlightRoute.entry;
+const { title = data.title, tagline, image, actions = [] } = data.hero || {};
+const PAGE_TITLE_ID = '_top';
+
+const imageAttrs = {
+  loading: 'eager' as const,
+  decoding: 'async' as const,
+  width: 1440,
+  height: 900,
+  alt: image?.alt || '',
+};
+
+let darkImage;
+let lightImage;
+let rawHtml;
+if (image) {
+  if ('file' in image) {
+    darkImage = image.file;
+  } else if ('dark' in image) {
+    darkImage = image.dark;
+    lightImage = image.light;
+  } else {
+    rawHtml = image.html;
+  }
+}
+---
+
+<div class="hero docs-hero">
+  <div class="docs-hero__copy sl-flex">
+    <div class="docs-hero__eyebrow">
+      <span class="docs-hero__eyebrow-dot"></span>
+      Open source autonomous research desktop lab
+    </div>
+    <h1 id={PAGE_TITLE_ID} data-page-title set:html={title} />
+    {tagline && <div class="tagline" set:html={tagline} />}
+    <div class="docs-hero__chips">
+      <div class="docs-hero__chip">Local AI</div>
+      <div class="docs-hero__chip">Safe Git experiments</div>
+      <div class="docs-hero__chip">Persistent history</div>
+    </div>
+    {
+      actions.length > 0 && (
+        <div class="sl-flex actions">
+          {actions.map(
+            ({ attrs: { class: className, ...attrs } = {}, icon, link: href, text, variant }) => (
+              <a href={href} class:list={['sl-link-button', 'not-content', variant, className]} {...attrs}>
+                {text}
+                {icon?.html && <Fragment set:html={icon.html} />}
+              </a>
+            )
+          )}
+        </div>
+      )
+    }
+  </div>
+
+  <div class="docs-hero__visual">
+    <div class="docs-hero__glow docs-hero__glow--left"></div>
+    <div class="docs-hero__glow docs-hero__glow--right"></div>
+
+    <div class="docs-hero__panel">
+      <div class="docs-hero__panel-top">
+        <div>
+          <div class="docs-hero__panel-kicker">Real desktop console</div>
+          <div class="docs-hero__panel-title">
+            See runs, blueprints, and outcomes at a glance
+          </div>
+        </div>
+        <div class="docs-hero__panel-badge">Shipping in public</div>
+      </div>
+
+      <div class="docs-hero__media">
+        {
+          darkImage && (
+            <Image
+              src={darkImage}
+              {...imageAttrs}
+              class:list={{ 'light:sl-hidden': Boolean(lightImage) }}
+            />
+          )
+        }
+        {lightImage && <Image src={lightImage} {...imageAttrs} class="dark:sl-hidden" />}
+        {rawHtml && <div class="docs-hero__media-html" set:html={rawHtml} />}
+      </div>
+
+      <div class="docs-hero__float docs-hero__float--left">
+        <div class="docs-hero__float-label">What you see instantly</div>
+        <div class="docs-hero__float-copy">Live score and progression</div>
+      </div>
+
+      <div class="docs-hero__float docs-hero__float--right">
+        <div class="docs-hero__float-label">Why it matters</div>
+        <div class="docs-hero__float-copy">Decisions stay inspectable</div>
+      </div>
+    </div>
+  </div>
+</div>

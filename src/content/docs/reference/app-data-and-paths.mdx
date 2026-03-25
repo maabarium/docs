@@ -1,0 +1,30 @@
+---
+title: App Data and Paths
+description: Understand where Maabarium stores data, logs, and runtime files in desktop and repository contexts.
+---
+
+## Desktop app paths
+
+The desktop app stores runtime data in app-specific operating-system directories. That keeps local state separate from your source repositories.
+
+## Repository-local paths
+
+The CLI defaults to repository-local runtime files such as:
+
+- `data/maabarium.db`
+- shared trace and log output
+
+## Why this matters
+
+Knowing where data lives helps you answer practical questions:
+
+- What should I back up?
+- What can I safely delete?
+- Which files should be attached to a bug report?
+- Why does the desktop app behave differently from a repo-local CLI run?
+
+## Good operating practice
+
+- treat logs and persisted experiment data as part of your debugging surface
+- do not assume deleting runtime files is harmless during an active investigation
+- if you migrate machines, migrate the runtime data you actually care about, not just the app binary

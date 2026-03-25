@@ -1,0 +1,42 @@
+---
+title: Workflows and Blueprints
+description: Learn how Maabarium uses blueprints to define repeatable autonomous workflows.
+---
+
+A blueprint is the contract for a workflow. It tells Maabarium what to run, how to evaluate it, and what success looks like.
+
+## Why blueprints exist
+
+Without blueprints, every run becomes an ad hoc prompt chain. With blueprints, you get:
+
+- repeatability
+- clearer evaluation rules
+- easier comparison between runs
+- safer collaboration across teams
+
+## What a blueprint usually defines
+
+A blueprint can include:
+
+- the workflow name and domain
+- repo or workspace expectations
+- model and provider settings
+- evaluator logic
+- proposal and iteration behavior
+- success metrics and weighting
+
+## Choosing between bundled and custom workflows
+
+Bundled workflows are best when you want:
+
+- a known-good starting point
+- quick evaluation of the product
+- examples of how the system is meant to be structured
+
+Custom workflows are best when you already know your own operating model and want to adapt the keep-winner loop to it.
+
+## Editing workflows safely
+
+Use the desktop wizard when you want guided editing. Edit raw blueprint files when you need full control or want to review exact source-level changes in Git.
+
+For the deeper contract, continue to [Blueprint Reference](/reference/blueprint-reference/).

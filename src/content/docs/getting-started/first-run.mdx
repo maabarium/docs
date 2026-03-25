@@ -1,0 +1,48 @@
+---
+title: Run Your First Workflow
+description: Go from installed to a real Maabarium run with a clean first-use checklist.
+---
+
+## 1. Open the desktop app
+
+On first launch, use the setup flow to confirm:
+
+- your default workspace path
+- local model availability if you are using Ollama or another local runtime
+- any provider credentials needed for the blueprint you want to run
+
+## 2. Pick a workflow
+
+Start with one of the bundled workflow blueprints from the workflow library. If you are learning the system, avoid the most ambitious templates first. Choose something that lets you verify the loop end to end.
+
+## 3. Confirm the workspace
+
+When Maabarium asks where to run the workflow, point it at a real project directory. If the folder is not already a Git repository, Maabarium can initialize one for you so future branching and evaluation steps behave correctly.
+
+## 4. Start the run
+
+Use the desktop Run Flow action or the CLI if you prefer terminals.
+
+```bash
+cargo run -p maabarium-cli -- --help
+```
+
+If you are using the desktop app, watch the console section for:
+
+- latest proposal activity
+- logs
+- research evidence or evaluation output
+- status changes between idle, running, and stopping
+
+## 5. Review what happened
+
+A successful first run should leave you with visible evidence, not just a green check:
+
+- persisted experiments
+- proposals or evaluation logs
+- an updated Git workspace or branch history
+- enough context to understand why the result was accepted or rejected
+
+## If the first run fails
+
+Go directly to [Troubleshooting](/guides/troubleshooting/). The common issues are almost always environment, model availability, workspace state, or credentials.

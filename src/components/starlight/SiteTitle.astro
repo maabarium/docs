@@ -1,0 +1,17 @@
+---
+const { siteTitleHref = "/" } = Astro.props;
+---
+
+<a href={siteTitleHref} class="site-title sl-flex" aria-label="Maabarium Docs home">
+  <img
+    src="/images/maabarium-logo.png"
+    alt="Maabarium logo"
+    width="44"
+    height="44"
+    class="site-title__logo"
+  />
+  <span class="site-title__lockup">
+    <span class="site-title__brand" translate="no">MAABARIUM</span>
+    <span class="site-title__tag">Open Source Research Lab</span>
+  </span>
+</a>
