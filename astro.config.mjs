@@ -4,6 +4,7 @@ import starlight from "@astrojs/starlight";
 
 export default defineConfig({
   site: "https://docs.maabarium.com",
+  trailingSlash: "never",
   integrations: [
     sitemap(),
     starlight({
@@ -11,6 +12,8 @@ export default defineConfig({
       description:
         "User-focused documentation for setting up, running, and extending Maabarium.",
       components: {
+        Head: "./src/components/starlight/Head.astro",
+        Footer: "./src/components/starlight/Footer.astro",
         Header: "./src/components/starlight/Header.astro",
         Hero: "./src/components/starlight/Hero.astro",
         SiteTitle: "./src/components/starlight/SiteTitle.astro",
@@ -83,6 +86,10 @@ export default defineConfig({
               slug: "reference/app-data-and-paths",
               label: "App Data and Paths",
             },
+            {
+              slug: "reference/privacy-and-analytics",
+              label: "Privacy and Analytics",
+            },
           ],
         },
         {
@@ -105,6 +112,13 @@ export default defineConfig({
           attrs: {
             property: "og:site_name",
             content: "Maabarium Docs",
+          },
+        },
+        {
+          tag: "link",
+          attrs: {
+            rel: "apple-touch-icon",
+            href: "/images/maabarium-logo.png",
           },
         },
       ],

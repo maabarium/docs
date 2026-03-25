@@ -45,3 +45,4 @@ Use the pull request template and include:
 
 - Pull requests run docs CI.
 - Pushes to `master` deploy to Cloudflare Pages when repository secrets are configured.
+- The production docs build reads `PUBLIC_GA_MEASUREMENT_ID` from the repository Actions variables when a docs-specific GA4 property needs to override the fallback in [src/config.ts](src/config.ts).

@@ -1,0 +1,75 @@
+---
+import {
+  DEFAULT_DESCRIPTION,
+  ORGANIZATION_NAME,
+  REPOSITORY_URL,
+  SITE_NAME,
+  SITE_URL,
+} from "../config";
+
+const route = Astro.locals.starlightRoute;
+const pathname = Astro.url.pathname === "/"
+  ? "/"
+  : Astro.url.pathname.replace(/\/+$/, "");
+const pageTitle = route.entry.data.title || SITE_NAME;
+const pageDescription = route.entry.data.description || DEFAULT_DESCRIPTION;
+const pageUrl = new URL(pathname, SITE_URL).toString();
+const crumbSegments = pathname.split("/").filter(Boolean);
+
+const breadcrumbItems = [
+  {
+    "@type": "ListItem",
+    position: 1,
+    name: SITE_NAME,
+    item: SITE_URL,
+  },
+  ...crumbSegments.map((segment, index) => ({
+    "@type": "ListItem",
+    position: index + 2,
+    name: segment
+      .split("-")
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(" "),
+    item: new URL(`/${crumbSegments.slice(0, index + 1).join("/")}`, SITE_URL).toString(),
+  })),
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}#website`,
+      name: SITE_NAME,
+      url: SITE_URL,
+      description: DEFAULT_DESCRIPTION,
+      publisher: {
+        "@type": "Organization",
+        name: ORGANIZATION_NAME,
+        url: REPOSITORY_URL,
+      },
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${pageUrl}#webpage`,
+      url: pageUrl,
+      name: pageTitle,
+      description: pageDescription,
+      isPartOf: {
+        "@id": `${SITE_URL}#website`,
+      },
+    },
+    ...(breadcrumbItems.length > 1
+      ? [
+          {
+            "@type": "BreadcrumbList",
+            "@id": `${pageUrl}#breadcrumb`,
+            itemListElement: breadcrumbItems,
+          },
+        ]
+      : []),
+  ],
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />

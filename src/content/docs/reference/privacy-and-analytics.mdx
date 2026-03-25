@@ -1,0 +1,43 @@
+---
+title: Privacy and Analytics
+description: How the Maabarium docs site handles analytics consent, cookies, and privacy-sensitive website data.
+---
+
+# Privacy and analytics
+
+This page covers the Maabarium documentation website at <strong>docs.maabarium.com</strong>. It does not describe telemetry or data handling inside self-hosted Maabarium workflows, local model runtimes, or repositories you operate yourself.
+
+## Default behavior
+
+The docs site is usable without analytics consent. Navigation, search, documentation content, and normal page rendering work without enabling Google Analytics 4.
+
+By default, analytics storage starts in the denied state. The site only loads Google Analytics 4 after you explicitly accept analytics in the consent banner.
+
+## Consent and cookies
+
+The docs site stores your analytics preference in a first-party cookie named <code>maabarium_analytics_consent</code>.
+
+- <code>granted</code> means analytics can load for this site.
+- <code>denied</code> means analytics remains off.
+
+You can revisit your choice at any time from the footer using <strong>Cookie preferences</strong>.
+
+## Google Analytics 4
+
+If you opt in, the docs site can send aggregated usage signals such as page views, approximate device context, and high-level engagement events to Google Analytics 4.
+
+The published docs configuration uses the measurement ID <code>G-9V9Y1FEJL8</code> by default unless the GitHub Actions build provides <code>PUBLIC_GA_MEASUREMENT_ID</code> as a repository variable.
+
+Google processes analytics data under its own terms and privacy policy. Review Google’s privacy documentation at <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">policies.google.com/privacy</a>.
+
+## Why analytics exists here
+
+If consent is granted, analytics helps the project understand which pages are most useful, where setup guidance is unclear, and which documentation paths need the most attention.
+
+## Open-source project links
+
+This docs site links to GitHub releases, source files, and other external services. When you follow those links, those destinations apply their own privacy and security policies.
+
+## Contact and updates
+
+Material changes to docs-site privacy or analytics behavior should be reflected on this page as part of the same change set.

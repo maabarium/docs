@@ -1,0 +1,73 @@
+---
+import { DEFAULT_GA_MEASUREMENT_ID } from "../config";
+
+const configuredMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID?.trim();
+const measurementId = configuredMeasurementId || DEFAULT_GA_MEASUREMENT_ID;
+---
+
+<script is:inline define:vars={{ measurementId }}>
+  const grantedEventName = "maabarium:analytics-consent-granted";
+  const deniedEventName = "maabarium:analytics-consent-denied";
+  const analyticsScriptId = "maabarium-docs-ga4-script";
+  let analyticsLoaded = false;
+
+  if (measurementId) {
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function gtag() {
+      window.dataLayer.push(arguments);
+    };
+    window[`ga-disable-${measurementId}`] = true;
+    window.gtag("consent", "default", {
+      analytics_storage: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+    });
+
+    const loadAnalytics = () => {
+      if (analyticsLoaded) {
+        return;
+      }
+
+      window[`ga-disable-${measurementId}`] = false;
+      window.gtag("consent", "update", {
+        analytics_storage: "granted",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+      });
+      window.gtag("js", new Date());
+      window.gtag("config", measurementId, {
+        anonymize_ip: true,
+        transport_type: "beacon",
+      });
+
+      if (!document.getElementById(analyticsScriptId)) {
+        const script = document.createElement("script");
+        script.id = analyticsScriptId;
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
+        document.head.appendChild(script);
+      }
+
+      analyticsLoaded = true;
+    };
+
+    const disableAnalytics = () => {
+      window[`ga-disable-${measurementId}`] = true;
+      window.gtag?.("consent", "update", {
+        analytics_storage: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+      });
+    };
+
+    window.addEventListener(grantedEventName, loadAnalytics);
+    window.addEventListener(deniedEventName, disableAnalytics);
+
+    if (window.__maabariumAnalyticsConsent === true) {
+      loadAnalytics();
+    }
+  }
+</script>

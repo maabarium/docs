@@ -20,6 +20,8 @@ pnpm install
 pnpm dev
 ```
 
+If you need the docs site to build against a non-default GA4 property, set `PUBLIC_GA_MEASUREMENT_ID` before running the dev server or production build.
+
 ## Validation
 
 ```bash
@@ -45,6 +47,17 @@ Repository secrets required for deployment:
 
 - `CLOUDFLARE_API_TOKEN`
 - `CLOUDFLARE_ACCOUNT_ID`
+
+Repository variable used during the GitHub Actions build:
+
+- `PUBLIC_GA_MEASUREMENT_ID`
+
+How analytics property selection works:
+
+- The docs site has its own fallback GA4 property in [src/config.ts](src/config.ts).
+- GitHub Actions passes `PUBLIC_GA_MEASUREMENT_ID` into the build when the repository variable is set.
+- If the variable is unset, the build falls back to the default docs property in [src/config.ts](src/config.ts).
+- This value is public configuration, so it belongs in a repository variable rather than a secret.
 
 Cloudflare Pages project details:
 

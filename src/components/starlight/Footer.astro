@@ -1,0 +1,150 @@
+---
+import EditLink from '@astrojs/starlight/components/EditLink.astro';
+import LastUpdated from '@astrojs/starlight/components/LastUpdated.astro';
+import Pagination from '@astrojs/starlight/components/Pagination.astro';
+import config from 'virtual:starlight/user-config';
+import { Icon } from '@astrojs/starlight/components';
+import ConsentManager from '../ConsentManager.astro';
+import { DOCS_PRIVACY_PATH } from '../../config';
+---
+
+<footer class="sl-flex">
+  <div class="meta sl-flex">
+    <EditLink />
+    <LastUpdated />
+    <div class="docs-meta-links sl-flex">
+      <a href={DOCS_PRIVACY_PATH}>Privacy &amp; analytics</a>
+      <button id="open-cookie-preferences" type="button">
+        Cookie preferences
+      </button>
+    </div>
+  </div>
+  <Pagination />
+
+  {
+    config.credits && (
+      <a class="kudos sl-flex" href="https://starlight.astro.build">
+        <Icon name={'starlight'} /> {Astro.locals.t('builtWithStarlight.label')}
+      </a>
+    )
+  }
+
+  <ConsentManager />
+
+  <button
+    id="scroll-to-top"
+    type="button"
+    class="scroll-to-top"
+    aria-label="Scroll to top"
+    data-visible="false"
+  >
+    <svg
+      class="h-5 w-5"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M12 19V5" />
+      <path d="M6 11l6-6 6 6" />
+    </svg>
+  </button>
+</footer>
+
+<script is:inline>
+  const scrollToTopButton = document.getElementById('scroll-to-top');
+  const cookiePreferencesButton = document.getElementById('open-cookie-preferences');
+
+  if (scrollToTopButton) {
+    const syncScrollToTopVisibility = () => {
+      scrollToTopButton.dataset.visible = window.scrollY > 520 ? 'true' : 'false';
+    };
+
+    scrollToTopButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    syncScrollToTopVisibility();
+    window.addEventListener('scroll', syncScrollToTopVisibility, { passive: true });
+  }
+
+  cookiePreferencesButton?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('maabarium:open-cookie-preferences'));
+  });
+</script>
+
+<style>
+  @layer starlight.core {
+    footer {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .meta {
+      gap: 0.75rem 3rem;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+      font-size: var(--sl-text-sm);
+      color: var(--sl-color-gray-3);
+    }
+
+    .meta > :global(p:only-child) {
+      margin-inline-start: auto;
+    }
+
+    .docs-meta-links {
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .docs-meta-links :global(a),
+    .docs-meta-links button {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--sl-color-gray-2);
+      font: inherit;
+      padding: 0.55rem 0.85rem;
+      text-decoration: none;
+      transition:
+        border-color 180ms ease,
+        background-color 180ms ease,
+        color 180ms ease;
+    }
+
+    .docs-meta-links :global(a:hover),
+    .docs-meta-links button:hover {
+      border-color: rgba(45, 212, 191, 0.28);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--sl-color-white);
+    }
+
+    .docs-meta-links button {
+      cursor: pointer;
+    }
+
+    .kudos {
+      align-items: center;
+      gap: 0.5em;
+      margin: 1.5rem auto;
+      font-size: var(--sl-text-xs);
+      text-decoration: none;
+      color: var(--sl-color-gray-3);
+    }
+
+    .kudos:hover {
+      color: var(--sl-color-white);
+    }
+  }
+
+  @layer starlight.components {
+    .kudos :global(svg) {
+      color: var(--sl-color-orange);
+    }
+  }
+</style>
