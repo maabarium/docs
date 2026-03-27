@@ -10,7 +10,35 @@ On first launch, use the setup flow to confirm:
 - your default workspace path
 - Git readiness and any automatic installation prompt if Git is missing
 - local model availability if you are using Ollama or another local runtime
+- optional CLI shell integration if you want `maabarium` available in Terminal through the managed `~/.local/bin/maabarium` link
 - any provider credentials needed for the blueprint you want to run
+
+If you are using Ollama, the setup flow keeps the model step explicit:
+
+- install Ollama if it is not present yet
+- start Ollama if the local service is not running yet
+- use `Pull Recommended Models` after Ollama is running to download the suggested local models for bundled workflows
+
+## Setup modal walkthrough
+
+<figure class="docs-page-shot docs-page-shot--top">
+  <img
+    src="/images/screenshots/setup-modal-onboarding.png"
+    alt="Maabarium guided setup modal showing Git readiness, optional CLI shell integration, and the Pull Recommended Models action."
+  />
+  <figcaption>
+    The guided setup modal keeps Git readiness, shell CLI setup, workspace
+    selection, and Ollama model pulls in one place before the first run.
+  </figcaption>
+</figure>
+
+Use the setup modal in this order:
+
+1. Choose the experience mode and runtime strategy first. That decides whether you are optimizing for a local Ollama flow, a remote-provider flow, or a mixed setup.
+2. Resolve machine-level prerequisites next. The same modal surfaces Git readiness, the optional `Install CLI Link` action for `~/.local/bin/maabarium`, shell `PATH` guidance, and the default workspace selector.
+3. Finish the local runtime section before starting a workflow. If Ollama is already running, `Pull Recommended Models` downloads the suggested local models without making you drop into Terminal and run individual `ollama pull` commands.
+
+When those sections look healthy, save setup and move on to blueprint selection.
 
 ## 2. Pick a workflow
 

@@ -7,6 +7,12 @@ description: Understand where Maabarium stores data, logs, and runtime files in 
 
 The desktop app stores runtime data in app-specific operating-system directories. That keeps local state separate from your source repositories.
 
+On macOS, packaged production releases use the `com.maabarium.console` runtime namespace under `~/Library/Application Support` and `~/Library/Logs`.
+
+Debug builds use a separate development namespace so local release testing does not automatically mix with day-to-day development data.
+
+On supported packaged desktop builds, the bundled CLI is seeded into the desktop app-data `bin/` directory. If you enable shell integration, Maabarium also manages a separate symlink at `~/.local/bin/maabarium` that points at that seeded binary.
+
 ## Repository-local paths
 
 The CLI defaults to repository-local runtime files such as:
@@ -28,3 +34,5 @@ Knowing where data lives helps you answer practical questions:
 - treat logs and persisted experiment data as part of your debugging surface
 - do not assume deleting runtime files is harmless during an active investigation
 - if you migrate machines, migrate the runtime data you actually care about, not just the app binary
+- if you want a truly fresh packaged-release test on macOS, back up or reset the existing `com.maabarium.console` app data first instead of assuming the app bundle contains all state
+- if you enabled the shell CLI link, remove it through the app before deleting the desktop bundle if you want the terminal integration cleaned up too

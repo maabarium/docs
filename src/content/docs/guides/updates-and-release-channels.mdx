@@ -3,12 +3,12 @@ title: Updates and Release Channels
 description: Understand how desktop updates, release channels, and reminders behave.
 ---
 
-The desktop app supports channel-aware update behavior so you can balance stability and freshness.
+The desktop app supports two release channels so you can balance stability and early access without guessing how the release pipeline works.
 
 ## Common update preferences
 
 - stay on the stable channel for production use
-- use a non-stable channel only when you expect change and want earlier feedback
+- use the beta channel only when you expect change and want earlier feedback
 - use remind-later sparingly and clear reminders once you are ready to evaluate the update
 
 ## What the updater needs
@@ -18,8 +18,9 @@ Updater behavior depends on release metadata, the update base URL, and the signi
 Fresh macOS installs and in-app updates now share the same release metadata story:
 
 - `install.sh` reads `latest.json` from the official downloads host
-- `latest.json` points at the signed updater bundle for the right platform and architecture
-- the installed app uses the same updater origin when you check for updates later
+- `latest.json` is the stable alias used by the install path
+- `stable/latest.json` and `beta/latest.json` point at the signed updater bundle for the right platform and architecture
+- the installed app uses the embedded release origin and your selected channel when you check for updates later
 
 For most users, this is already configured by the release pipeline. Advanced operators and contributors may care about:
 
@@ -28,13 +29,29 @@ For most users, this is already configured by the release pipeline. Advanced ope
 - release channel selection
 - signing key and update verification
 
+## How beta releases are published
+
+Stable releases are the default path:
+
+1. publish a normal GitHub Release
+2. let the desktop release workflow run from that release event, or run it manually for the tag with the `stable` channel
+3. the workflow publishes `stable/latest.json` and also updates the root `latest.json` alias used by the install script
+
+Beta releases are intentionally manual so they do not replace the stable install path:
+
+1. create a prerelease or a tagged GitHub Release for the build you want to test
+2. run the desktop release workflow manually with that release tag and `release_channel=beta`
+3. the workflow publishes `beta/latest.json` without replacing the root `latest.json` stable alias
+
+That means the website install path stays stable-first, while users who switch the desktop app to beta can still receive the prerelease line.
+
 ## What to expect in the UI
 
 The updates card lets you:
 
 - check for updates manually
 - install an available update
-- change preferred update channel
+- change preferred update channel between stable and beta
 - remind later or clear a reminder
 
 The Maintenance area is also where you are most likely to notice related environment issues such as updater access failures or Git readiness problems during setup.

@@ -15,7 +15,7 @@ That path is best when you want the current released build quickly.
 
 ## What the install script does
 
-On macOS, the published `install.sh` is generated from release metadata. It reads `latest.json`, selects the correct signed app bundle for your architecture, downloads it from the official release origin, and installs the app into `/Applications`.
+On macOS, the published `install.sh` is generated from release metadata. It reads the root `latest.json` stable alias, selects the correct signed app bundle for your architecture, downloads it from the official release origin, and installs the app into `/Applications`.
 
 If Git is missing, Maabarium now detects that during the install or first-run path and attempts to install it automatically through a supported system installer when possible.
 
@@ -63,11 +63,13 @@ A standard desktop install gives you:
 
 The CLI may also be bundled as a desktop resource depending on the release packaging flow.
 
+On supported desktop builds, first launch can expose that bundled CLI through a managed shell link at `~/.local/bin/maabarium`. The setup flow can install or remove that link for you and warns when `~/.local/bin` is not on your shell `PATH` yet.
+
 ## Recommended prerequisites
 
 - Git is still required for Git-backed experiment worktrees, but Maabarium now detects when it is missing and can install it automatically through a supported system installer on many machines.
 - A workspace folder where Maabarium can create and manage Git-backed experiment worktrees
-- Local model tooling or provider credentials, depending on how you plan to run experiments
+- Local model tooling or provider credentials, depending on how you plan to run experiments. If you use Ollama locally, the desktop setup flow can install it, start it, and then let you pull the recommended local models from inside the app.
 
 ## Next step
 

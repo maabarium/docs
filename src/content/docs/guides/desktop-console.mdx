@@ -5,6 +5,22 @@ description: Understand the main regions of the Maabarium desktop UI and what th
 
 The desktop console is organized to answer one question quickly: what is the lab doing right now, and should you trust it?
 
+## Guided setup
+
+<figure class="docs-page-shot docs-page-shot--top">
+  <img
+    src="/images/screenshots/setup-modal-onboarding.png"
+    alt="Maabarium guided setup modal showing Git readiness, optional CLI shell integration, and the Pull Recommended Models action."
+  />
+  <figcaption>
+    Guided setup is part of the desktop console experience, not a separate
+    installer screen. It prepares the machine and runtime state that the rest of
+    the console depends on.
+  </figcaption>
+</figure>
+
+Before you spend time in the main console, the setup modal handles the machine and runtime checks that make the rest of the UI meaningful. That includes Git readiness, optional shell CLI integration, workspace selection, local Ollama readiness, and the in-app `Pull Recommended Models` action.
+
 ## Top navigation
 
 The sticky top bar gives you fast movement across:
@@ -38,6 +54,8 @@ The console area is where you spend most of your time during an active run. Expe
 - research evidence
 - runtime signals, Git readiness state, and LoRA runtime metadata when relevant
 
+During setup and early troubleshooting, the desktop flow also surfaces runtime actions directly in context, including Git installation help, Ollama install and start actions, recommended-model pulls, and optional shell CLI integration.
+
 ## Workflow library
 
 The workflow library is the control point for choosing, filtering, editing, and creating blueprints.
@@ -55,6 +73,8 @@ The maintenance section sits below the workflow library and groups operational t
 
 - readiness center checks
 - Git readiness and installer details when Git is missing
+- local runtime actions such as installing Ollama, starting Ollama, and pulling recommended local models
+- optional CLI link management for exposing `maabarium` in your shell
 - branch cleanup previews
 - persisted stack summaries
 

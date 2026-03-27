@@ -15,6 +15,8 @@ Benefits:
 - fewer external dependencies during experimentation
 - easier reproducibility on a single machine
 
+If you are using the desktop app with Ollama, the setup flow keeps local model downloads explicit. After Ollama is installed and running, use `Pull Recommended Models` to fetch the suggested local models for the bundled workflows instead of manually running `ollama pull` for each one.
+
 ## Remote providers
 
 Remote providers may still be useful when you need:
@@ -32,3 +34,11 @@ Remote providers may still be useful when you need:
 ## Operational advice
 
 Do not mix providers casually inside a workflow unless that is part of the evaluation design. Otherwise, interpreting outcomes becomes harder because performance changes may be model-related rather than workflow-related.
+
+For local runtimes, separate these concerns when debugging:
+
+- Ollama installed versus missing
+- Ollama app running versus port `11434` not responding
+- recommended models missing versus already downloaded
+
+Maabarium's desktop onboarding reflects those states directly so you can fix the right problem instead of guessing.

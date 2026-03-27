@@ -12,6 +12,8 @@ The desktop app is the best operational surface for most people. The CLI remains
 - lower-level debugging
 - to run in environments without the desktop shell
 
+On supported packaged desktop builds, you do not need a separate CLI download just to get terminal access. The app can seed the bundled CLI into its app-data directory and expose it through a managed `~/.local/bin/maabarium` shell link.
+
 ## What the core runtime owns
 
 The runtime logic in `maabarium-core` is responsible for:
@@ -44,3 +46,11 @@ For portable optimized local binaries and deeper runtime details, continue into 
 ## When to prefer desktop
 
 Prefer the desktop path when you want faster visibility and lower cognitive load while still keeping access to logs, telemetry, workflow selection, and persisted history.
+
+The desktop setup flow is also the simplest way to manage the optional shell link:
+
+- `Install CLI Link` creates or refreshes the managed symlink
+- `Remove CLI Link` removes only that shell link
+- the app warns if `~/.local/bin` is not exported in your shell `PATH`
+
+Removing the `.app` bundle does not remove the shell link automatically, because that integration lives outside the app bundle.
