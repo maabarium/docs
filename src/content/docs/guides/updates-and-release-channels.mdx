@@ -13,7 +13,7 @@ The desktop app supports two release channels so you can balance stability and e
 
 ## What the updater needs
 
-Updater behavior depends on release metadata, the update base URL, and the signing public key embedded or provided for the app build.
+Updater behaviour depends on release metadata, the update base URL, and the signing public key embedded or provided for the app build.
 
 Fresh macOS installs and in-app updates now share the same release metadata story:
 
@@ -25,7 +25,7 @@ Fresh macOS installs and in-app updates now share the same release metadata stor
 For most users, this is already configured by the release pipeline. Advanced operators and contributors may care about:
 
 - update manifest location
-- generated install script behavior
+- generated install script behaviour
 - release channel selection
 - signing key and update verification
 
@@ -37,11 +37,11 @@ Stable releases are the default path:
 2. let the desktop release workflow run from that release event, or run it manually for the tag with the `stable` channel
 3. the workflow publishes `stable/latest.json` and also updates the root `latest.json` alias used by the install script
 
-Beta releases are intentionally manual so they do not replace the stable install path:
+GitHub prereleases now map to the beta channel automatically so they do not replace the stable install path:
 
-1. create a prerelease or a tagged GitHub Release for the build you want to test
-2. run the desktop release workflow manually with that release tag and `release_channel=beta`
-3. the workflow publishes `beta/latest.json` without replacing the root `latest.json` stable alias
+1. create or publish a GitHub prerelease for the build you want to test
+2. let the desktop release workflow react to that prerelease and publish `beta/latest.json`
+3. use the manual workflow path only when you need to rebuild or republish an existing beta tag
 
 That means the website install path stays stable-first, while users who switch the desktop app to beta can still receive the prerelease line.
 

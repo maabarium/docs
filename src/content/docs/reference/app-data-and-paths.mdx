@@ -9,9 +9,16 @@ The desktop app stores runtime data in app-specific operating-system directories
 
 On macOS, packaged production releases use the `com.maabarium.console` runtime namespace under `~/Library/Application Support` and `~/Library/Logs`.
 
+The packaged release paths are:
+
+- `~/Library/Application Support/com.maabarium.console/maabarium.db`
+- `~/Library/Logs/com.maabarium.console/maabarium.log`
+- `~/Library/Application Support/com.maabarium.console/blueprints/`
+- `~/Library/Application Support/com.maabarium.console/bin/maabarium`
+
 Debug builds use a separate development namespace so local release testing does not automatically mix with day-to-day development data.
 
-On supported packaged desktop builds, the bundled CLI is seeded into the desktop app-data `bin/` directory. If you enable shell integration, Maabarium also manages a separate symlink at `~/.local/bin/maabarium` that points at that seeded binary.
+On supported packaged desktop builds, the bundled CLI is seeded into the desktop app-data `bin/` directory from the app's packaged `generated-resources/cli/...` payload. When the shipped bundled binary changes, Maabarium refreshes the seeded copy on startup. If you enable shell integration, Maabarium also manages a separate symlink at `~/.local/bin/maabarium` that points at that seeded binary.
 
 ## Repository-local paths
 

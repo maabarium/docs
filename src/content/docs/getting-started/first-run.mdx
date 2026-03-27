@@ -19,6 +19,11 @@ If you are using Ollama, the setup flow keeps the model step explicit:
 - start Ollama if the local service is not running yet
 - use `Pull Recommended Models` after Ollama is running to download the suggested local models for bundled workflows
 
+If you plan to use research-oriented workflows, the same setup flow also lets you choose how web search should work:
+
+- `DuckDuckGo scrape` keeps the default local-first path with no separate Brave API credential requirement
+- `Brave API` uses the Brave-backed search path when that credential is configured
+
 ## Setup modal walkthrough
 
 <figure class="docs-page-shot docs-page-shot--top">
@@ -46,7 +51,7 @@ Start with one of the bundled workflow blueprints from the workflow library. If 
 
 ## 3. Confirm the workspace
 
-When Maabarium asks where to run the workflow, point it at a real project directory. If the folder is not already a Git repository, Maabarium can initialize one for you so future branching and evaluation steps behave correctly.
+When Maabarium asks where to run the workflow, point it at a real project directory. If the folder is not already a Git repository, Maabarium can initialise one for you so future branching and evaluation steps behave correctly.
 
 If Git itself is missing, the desktop setup flow or CLI run path should tell you that directly. On supported systems, Maabarium will attempt to install Git automatically instead of failing silently.
 

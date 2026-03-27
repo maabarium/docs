@@ -35,6 +35,8 @@ Remote providers may still be useful when you need:
 
 Do not mix providers casually inside a workflow unless that is part of the evaluation design. Otherwise, interpreting outcomes becomes harder because performance changes may be model-related rather than workflow-related.
 
+For research workflows, provider setup now includes the search path as well as the model path. In the desktop app you can keep the default `DuckDuckGo scrape` mode for a lower-friction setup, or switch to `Brave API` when you want the Brave-backed search path and have the necessary credential configured.
+
 For local runtimes, separate these concerns when debugging:
 
 - Ollama installed versus missing

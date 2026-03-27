@@ -1,15 +1,15 @@
 ---
-title: Build Profiles and Runtime Behavior
-description: Understand optimized local build modes and the advanced runtime behavior Maabarium now handles under the hood.
+title: Build Profiles and Runtime Behaviour
+description: Understand optimised local build modes and the advanced runtime behaviour Maabarium now handles under the hood.
 ---
 
-# Build profiles and runtime behavior
+# Build profiles and runtime behaviour
 
-This page is for contributors and advanced operators who want to understand how Maabarium builds optimized local binaries and how the runtime behaves during real workflow execution.
+This page is for contributors and advanced operators who want to understand how Maabarium builds optimised local binaries and how the runtime behaves during real workflow execution.
 
-## Portable optimized builds
+## Portable optimised builds
 
-Maabarium defines a `release-lto` Cargo profile for optimized local builds that still remain portable across machines in the same target family.
+Maabarium defines a `release-lto` Cargo profile for optimised local builds that still remain portable across machines in the same target family.
 
 ```bash
 cargo build --profile release-lto
@@ -25,13 +25,13 @@ If you are benchmarking on a fixed machine, you can opt in to native CPU tuning 
 RUSTFLAGS="-C target-cpu=native" cargo build --profile release-lto
 ```
 
-Keep that mode local. Do not use it for distributed artifacts, CI outputs, or release bundles meant for other systems.
+Keep that mode local. Do not use it for distributed artefacts, CI outputs, or release bundles meant for other systems.
 
 ## Git is a runtime dependency
 
 Git is still required for Maabarium's isolated worktree flow.
 
-What changed recently is the startup behavior:
+What changed recently is the startup behaviour:
 
 - the CLI checks for Git before starting a workflow
 - the desktop setup flow surfaces Git readiness directly
@@ -41,9 +41,9 @@ That reduces first-run friction, but Git is still part of the runtime contract.
 
 ## macOS workspace materialization
 
-On macOS, Maabarium now prefers APFS-friendly copy-on-write behavior for sandbox and workspace materialization where that is safe. Other platforms keep the portable fallback path.
+On macOS, Maabarium now prefers APFS-friendly copy-on-write behaviour for sandbox and workspace materialisation where that is safe. Other platforms keep the portable fallback path.
 
-This is mostly an internal optimization, but it matters because large local repositories can feel more responsive when repeated full-tree duplication is avoided.
+This is mostly an internal optimisation, but it matters because large local repositories can feel more responsive when repeated full-tree duplication is avoided.
 
 ## Run performance summaries
 
@@ -51,13 +51,13 @@ CLI runs now end with an aggregated timing summary. Expect phase totals, average
 
 This is the quickest way to understand whether a workflow was slow because of proposal generation, evaluation, iteration count, or repeated failures.
 
-## Worktree and winner behavior
+## Worktree and winner behaviour
 
 The runtime now does a better job of reusing detached experiment worktrees and of making retained-versus-rejected outcomes explicit.
 
 That shows up in two places:
 
-- more predictable Git-backed execution behavior under the hood
+- more predictable Git-backed execution behaviour under the hood
 - clearer retained winner context in the desktop console overview
 
 ## Technical references

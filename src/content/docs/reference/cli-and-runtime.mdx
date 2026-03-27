@@ -35,13 +35,25 @@ cargo run -p maabarium-cli -- status --db data/maabarium.db
 
 Those commands are most relevant for contributors and advanced operators.
 
+## CLI self-update commands
+
+If you are using a packaged or seeded CLI install rather than `cargo run`, the CLI can also inspect and apply its own published updates.
+
+```bash
+maabarium self version
+maabarium self check
+maabarium self update
+```
+
+Those commands use the same release metadata story as the desktop updater flow. `self version` shows the configured channel and manifest, `self check` reports whether a newer CLI archive is available for your platform, and `self update` installs that archive in place.
+
 ## What a CLI run does now
 
 Before a workflow starts, the CLI checks whether Git is available. If Git is missing, Maabarium reports that directly and attempts automatic installation through a supported system installer when possible.
 
 After a run finishes, the CLI prints an aggregated timing summary. That summary rolls up phase totals, average iteration duration, and proposal-failure counters so you can inspect run cost without manually combining log lines.
 
-For portable optimized local binaries and deeper runtime details, continue into [Build Profiles and Runtime Behavior](/reference/build-profiles-and-runtime-behavior).
+For portable optimised local binaries and deeper runtime details, continue into [Build Profiles and Runtime Behaviour](/reference/build-profiles-and-runtime-behavior).
 
 ## When to prefer desktop
 

@@ -13,6 +13,8 @@ curl -fsSL https://downloads.maabarium.com/install.sh | sh
 
 That path is best when you want the current released build quickly.
 
+The current hosted desktop release supports Apple Silicon Macs running macOS 11 or later.
+
 ## What the install script does
 
 On macOS, the published `install.sh` is generated from release metadata. It reads the root `latest.json` stable alias, selects the correct signed app bundle for your architecture, downloads it from the official release origin, and installs the app into `/Applications`.
@@ -21,7 +23,7 @@ If Git is missing, Maabarium now detects that during the install or first-run pa
 
 ## Download releases directly
 
-Release artifacts are published from the main repository releases page:
+Release artefacts are published from the main repository releases page:
 
 - [Latest release](https://github.com/maabarium/core/releases/latest)
 - Install script: `https://downloads.maabarium.com/install.sh`
@@ -39,7 +41,7 @@ pnpm install --frozen-lockfile
 pnpm build
 ```
 
-For an optimized local build that stays portable across machines with the same target family:
+For an optimised local build that stays portable across machines with the same target family:
 
 ```bash
 cargo build --profile release-lto
@@ -51,7 +53,7 @@ For host-specific benchmarking or personal local builds only:
 RUSTFLAGS="-C target-cpu=native" cargo build --profile release-lto
 ```
 
-Distributed artifacts should keep the portable `release-lto` profile rather than the native-tuned variant.
+Distributed artefacts should keep the portable `release-lto` profile rather than the native-tuned variant.
 
 ## What gets installed
 
