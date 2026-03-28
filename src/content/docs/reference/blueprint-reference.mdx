@@ -15,6 +15,22 @@ A blueprint usually answers these questions:
 - How are results evaluated?
 - What determines a winner?
 
+It also answers two practical product questions that matter just as much:
+
+- What kind of deliverable is this workflow supposed to produce?
+- Should it touch one named file or a family of existing files?
+
+## Choose the workflow type first
+
+Use this quick mapping before you reach for raw TOML fields:
+
+- Code or application improvement: code-oriented language, source-tree globs, and tests usually enabled.
+- One named document or prompt output: `markdown` or `prompt` language and an exact target path such as `docs/release-plan.md`.
+- Research brief with citations: `research` language and markdown-oriented targets.
+- LoRA artefact validation: `lora` language and artefact-focused targets.
+
+The most common mistake is configuring a document workflow like a code workflow. If the output is one markdown file, make that explicit in the blueprint contract.
+
 ## Minimal mental model
 
 Think of a blueprint as a checked-in workflow plan, not just a prompt file.
@@ -29,11 +45,32 @@ repo_path = "/path/to/workspace"
 
 The real files are richer than this, but the important part is that they are explicit and reviewable.
 
+## Target path rules
+
+Use exact paths and globs deliberately:
+
+- Exact path: `docs/project-brief.md`
+  Use this when the workflow should create or refine one specifically named file.
+- Glob: `src/**/*.rs`
+  Use this when the workflow should scan or modify many existing files.
+- Markdown glob: `docs/**/*.md`
+  Use this when the workflow should work across a collection of document files.
+
+In practice, exact paths are safer for document-first workflows and globs are safer for code-first workflows.
+
+## Why language matters
+
+In Maabarium, `language` is not just descriptive metadata. It influences evaluator selection and some runtime guidance.
+
+- `markdown` and `prompt` steer the workflow toward document-style evaluation.
+- `research` enables research-oriented behavior and citation-focused evaluation.
+- code-oriented values such as `rust` or `application` are for source-tree work.
+
 ## For advanced readers
 
 Technical references in the core repository:
 
-- [Blueprint spec](https://github.com/maabarium/core/blob/master/maabarium/docs/BLUEPRINT_SPEC.md)
+- [Blueprint spec](https://github.com/maabarium/core/blob/master/docs/BLUEPRINT_SPEC.md)
 - [Architecture](https://github.com/maabarium/core/blob/master/maabarium/docs/ARCHITECTURE.md)
 
 Use those when you need implementation-level detail.

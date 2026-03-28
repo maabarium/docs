@@ -5,6 +5,19 @@ description: Learn how Maabarium uses blueprints to define repeatable autonomous
 
 A blueprint is the contract for a workflow. It tells Maabarium what to run, how to evaluate it, and what success looks like.
 
+## Start from the outcome, not the file format
+
+The easiest way to misconfigure a blueprint is to think about the TOML fields before deciding what the workflow is actually supposed to produce.
+
+Start with the deliverable:
+
+- Existing code or application changes: use a code-oriented workflow shape and point targets at existing source trees.
+- One named document or prompt asset: use a markdown or prompt workflow shape and target the exact output file when possible.
+- Research brief with citations: use a research workflow shape and markdown-style output paths.
+- LoRA artefact validation: use a LoRA validation workflow shape and target manifests and artefacts, not source code.
+
+If the output is one named markdown file, do not start from a full application workflow. That contract pushes Maabarium toward source-tree mutations and test-gated code evaluation, which is the wrong behavior for a document-first task.
+
 ## Why blueprints exist
 
 Without blueprints, every run becomes an ad hoc prompt chain. With blueprints, you get:
@@ -35,8 +48,30 @@ Bundled workflows are best when you want:
 
 Custom workflows are best when you already know your own operating model and want to adapt the keep-winner loop to it.
 
+## Output type and target path rules
+
+The target path decision is one of the most important parts of a blueprint:
+
+- Use an exact relative path such as `docs/project-brief.md` when the workflow should create or refine one specifically named output file.
+- Use globs such as `src/**/*.rs` when the workflow should inspect or modify a family of existing files.
+- Use markdown-oriented targets such as `docs/**/*.md` when the workflow writes documents, notes, or prompt assets across a directory.
+
+As a rule of thumb:
+
+- Exact path = one named output.
+- Glob = many existing files.
+
+If you choose the wrong shape here, the rest of the blueprint often looks valid while the runtime behavior is still wrong.
+
 ## Editing workflows safely
 
 Use the desktop wizard when you want guided editing. Edit raw blueprint files when you need full control or want to review exact source-level changes in Git.
+
+In the wizard, choose the template by workflow goal first. Then review the language and target paths before saving:
+
+- `product-builder` is for application-wide source changes.
+- `general-research` is for sourced briefs and citations.
+- `prompt-optimization` is for markdown or prompt assets and works best with exact `.md` output paths when one named file is required.
+- `custom` is an advanced escape hatch, not the easiest default.
 
 For the deeper contract, continue to [Blueprint Reference](/reference/blueprint-reference).
