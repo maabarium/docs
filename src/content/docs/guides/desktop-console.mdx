@@ -56,6 +56,8 @@ The console area is where you spend most of your time during an active run. Expe
 
 During setup and early troubleshooting, the desktop flow also surfaces runtime actions directly in context, including Git installation help, Ollama install and start actions, recommended-model pulls, and optional shell CLI integration.
 
+Run Analytics, Evidence, Workflow Library, and Maintenance can now be collapsed independently, and the desktop app restores that panel layout on restart so the console reopens in the shape you last used.
+
 ## Workflow library
 
 The workflow library is the control point for choosing, filtering, editing, and creating blueprints.
@@ -66,6 +68,10 @@ Use it when you need to:
 - search by language or workflow type
 - open the blueprint wizard
 - edit an existing workflow definition
+
+When you open the Blueprint Wizard, the guided path now keeps the workflow identity block before goal selection, then walks through output, workspace, runtime, and final review. Choosing a goal updates the derived workflow defaults, but you stay on the same step until you press `Next Step`. Advanced controls remain available when you need direct access to the underlying blueprint fields.
+
+The guided wizard also keeps the live summary rail and step actions pinned inside their own sticky scroll area, which makes long review passes easier without losing the current navigation controls.
 
 ## Maintenance
 

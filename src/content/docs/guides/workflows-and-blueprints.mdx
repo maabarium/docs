@@ -67,7 +67,29 @@ If you choose the wrong shape here, the rest of the blueprint often looks valid 
 
 Use the desktop wizard when you want guided editing. Edit raw blueprint files when you need full control or want to review exact source-level changes in Git.
 
-In the wizard, choose the template by workflow goal first. Then review the language and target paths before saving:
+## Wizard flow
+
+<figure class="docs-page-shot docs-page-shot--top">
+  <img
+    src="/images/screenshots/console-blueprint.png"
+    alt="Maabarium desktop workflow library with the Blueprint Wizard entry point and blueprint management actions visible."
+  />
+  <figcaption>
+    The Blueprint Wizard lives in the workflow library and now follows a more
+    stable guided sequence before dropping into advanced fields.
+  </figcaption>
+</figure>
+
+In the wizard, start by setting the workflow name. Then choose the goal, refine the description after the goal-derived defaults are in place, confirm the output shape, review workspace and runtime details, and save only after the final review step.
+
+Goal selection updates the derived workflow defaults, but it does not force you into the next step immediately. Custom description text is preserved when you switch goals, and you use the explicit `Next Step` action when you are ready to move forward.
+
+The guided flow keeps advanced controls available for the raw blueprint fields:
+
+- use the guided steps when you want the safest default path through identity, goal, output, workspace, runtime, and review
+- open advanced controls when you need direct access to template selection, metrics, agents, or the shared model pool
+
+Current goal-to-workflow mapping:
 
 - `product-builder` is for application-wide source changes.
 - `general-research` is for sourced briefs and citations.
