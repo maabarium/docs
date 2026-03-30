@@ -34,7 +34,7 @@ A blueprint can include:
 - the workflow name and domain
 - repo or workspace expectations
 - model and provider settings
-- evaluator logic
+- evaluator logic, including optional explicit built-in or process evaluator overrides
 - proposal and iteration behaviour
 - success metrics and weighting
 
@@ -95,5 +95,15 @@ Current goal-to-workflow mapping:
 - `general-research` is for sourced briefs and citations.
 - `prompt-optimization` is for markdown or prompt assets and works best with exact `.md` output paths when one named file is required.
 - `custom` is an advanced escape hatch, not the easiest default.
+
+## Evaluator routing in practice
+
+Maabarium does not rely on `language` alone when it chooses an evaluator.
+
+- Explicit overrides win first: `evaluator.kind = "process"` selects a process plugin, and `evaluator.kind = "builtin"` with `evaluator.builtin = "code" | "prompt" | "research" | "lora"` selects that built-in evaluator directly.
+- Bundled template metadata is the next routing signal when there is no explicit override.
+- Language, metric names, blueprint name, and target paths are fallback signals kept for older and custom blueprints.
+
+That means a workflow can safely target one named markdown implementation plan without being forced onto prompt evaluation, and a prompt-optimization workflow can still opt into prompt evaluation explicitly.
 
 For the deeper contract, continue to [Blueprint Reference](/reference/blueprint-reference).

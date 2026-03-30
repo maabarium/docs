@@ -58,13 +58,24 @@ Use exact paths and globs deliberately:
 
 In practice, exact paths are safer for document-first workflows and globs are safer for code-first workflows.
 
-## Why language matters
+## How evaluator selection works
 
-In Maabarium, `language` is not just descriptive metadata. It influences evaluator selection and some runtime guidance.
+In Maabarium, `language` is not just descriptive metadata, but it is also not the only routing signal.
 
-- `markdown` and `prompt` steer the workflow toward document-style evaluation.
-- `research` enables research-oriented behavior and citation-focused evaluation.
-- code-oriented values such as `rust` or `application` are for source-tree work.
+Evaluator selection follows this precedence:
+
+- Explicit override first: `evaluator.kind = "process"` selects a process plugin, and `evaluator.kind = "builtin"` plus `evaluator.builtin = "code" | "prompt" | "research" | "lora"` selects that built-in evaluator directly.
+- Template metadata second: bundled templates such as prompt optimization, general research, and LoRA validation map to their matching built-in evaluators.
+- Heuristic fallback last: language, metric names, blueprint name, and target paths still guide routing for older or custom blueprints.
+
+As a result:
+
+- `markdown` does not automatically mean prompt evaluation.
+- `research` still strongly signals research-oriented behavior.
+- code-oriented values such as `rust` or `application` still fit source-tree work.
+- exact document paths and prompt-specific target paths remain useful fallback hints when no explicit evaluator override is present.
+
+If you need fully deterministic behavior, prefer an explicit evaluator block in the blueprint itself.
 
 ## For advanced readers
 
