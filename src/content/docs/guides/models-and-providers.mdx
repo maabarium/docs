@@ -25,17 +25,30 @@ Remote providers may still be useful when you need:
 - specific APIs required by an existing blueprint
 - a comparison baseline against local runs
 
+The setup flow now treats remote-provider configuration as a validation step rather than a blind form fill. Supported native Anthropic and Gemini providers, plus supported OpenAI-compatible providers, can be checked before you save setup.
+
 ## Configuration guidance
 
 - Keep secrets outside committed blueprint content whenever possible.
 - Validate provider access during setup instead of during an important run.
 - Prefer explicit model naming so later readers understand what generated a proposal.
 
+In practice, that means:
+
+- validating the provider endpoint before the first real workflow run
+- selecting a default model after validation instead of leaving the provider half-configured
+- using the discovered model ids returned by validation when they are available
+- treating `custom` OpenAI-compatible endpoints as an escape hatch, not the easiest default
+
 ## Operational advice
 
 Do not mix providers casually inside a workflow unless that is part of the evaluation design. Otherwise, interpreting outcomes becomes harder because performance changes may be model-related rather than workflow-related.
 
 For research workflows, provider setup now includes the search path as well as the model path. In the desktop app you can keep the default `DuckDuckGo scrape` mode for a lower-friction setup, or switch to `Brave API` when you want the Brave-backed search path and have the necessary credential configured.
+
+When provider validation succeeds, Maabarium can surface the provider's available model ids directly in setup. The desktop flow then lets you search those discovered ids and pick one as the provider default instead of relying on manual typing. Setup will not save a provider as fully configured until validation succeeds and a default model is chosen.
+
+Known-good suggested model names are also surfaced for supported native Anthropic and Gemini presets, which reduces bad first-run model entries when you are not sure which model id to start with.
 
 For local runtimes, separate these concerns when debugging:
 

@@ -8,10 +8,22 @@ description: Go from installed to a real Maabarium run with a clean first-use ch
 On first launch, use the setup flow to confirm:
 
 - your default workspace path
+- the guided or advanced experience path you want to use
 - Git readiness and any automatic installation prompt if Git is missing
 - local model availability if you are using Ollama or another local runtime
 - optional CLI shell integration if you want `maabarium` available in Terminal through the managed `~/.local/bin/maabarium` link
 - any provider credentials needed for the blueprint you want to run
+
+The setup modal now supports two operator modes:
+
+- `Guided` keeps the first-run path opinionated with environment profiles and safer defaults.
+- `Advanced` exposes lower-level runtime strategy and research-search controls directly.
+
+When you stay in Guided mode, the environment profiles map to the common runtime shapes:
+
+- `Local Only` keeps the run path centered on Ollama and local models.
+- `Mixed` keeps local models in play but prepares remote providers as optional fallbacks.
+- `Research Heavy` biases the runtime toward remote providers, but still keeps `DuckDuckGo scrape` as the default search-discovery mode until you explicitly switch to Advanced and choose `Brave API`.
 
 If you are using Ollama, the setup flow keeps the model step explicit:
 
@@ -41,7 +53,8 @@ Use the setup modal in this order:
 
 1. Choose the experience mode and runtime strategy first. That decides whether you are optimizing for a local Ollama flow, a remote-provider flow, or a mixed setup.
 2. Resolve machine-level prerequisites next. The same modal surfaces Git readiness, the optional `Install CLI Link` action for `~/.local/bin/maabarium`, shell `PATH` guidance, and the default workspace selector.
-3. Finish the local runtime section before starting a workflow. If Ollama is already running, `Pull Recommended Models` downloads the suggested local models without making you drop into Terminal and run individual `ollama pull` commands.
+3. Check the workspace analysis block before you save. The setup flow can auto-detect project summary details such as the primary language, a likely test command, suggested target files, and whether CI config is already present.
+4. Finish the runtime section before starting a workflow. If Ollama is already running, `Pull Recommended Models` downloads the suggested local models without making you drop into Terminal and run individual `ollama pull` commands. If you are using remote providers, validate them here and choose a default model before saving setup.
 
 When those sections look healthy, save setup and move on to blueprint selection.
 
@@ -52,6 +65,8 @@ Start with one of the bundled workflow blueprints from the workflow library. If 
 ## 3. Confirm the workspace
 
 When Maabarium asks where to run the workflow, point it at a real project directory. If the folder is not already a Git repository, Maabarium can initialise one for you so future branching and evaluation steps behave correctly.
+
+The onboarding flow also inspects the saved workspace path up front. That lets you catch missing folders, non-directory paths, missing Git state, and useful project metadata before the first run starts.
 
 If Git itself is missing, the desktop setup flow or CLI run path should tell you that directly. On supported systems, Maabarium will attempt to install Git automatically instead of failing silently.
 
@@ -85,3 +100,5 @@ A successful first run should leave you with visible evidence, not just a green 
 ## If the first run fails
 
 Go directly to [Troubleshooting](/guides/troubleshooting). The common issues are almost always environment, model availability, workspace state, or credentials.
+
+If you need to revisit the same checks later, use the desktop Maintenance area to open `Run Setup` again. The setup flow is meant to stay available as an operational tool, not just a one-time installer screen.

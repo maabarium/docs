@@ -21,6 +21,8 @@ The desktop console is organised to answer one question quickly: what is the lab
 
 Before you spend time in the main console, the setup modal handles the machine and runtime checks that make the rest of the UI meaningful. That includes Git readiness, optional shell CLI integration, workspace selection, local Ollama readiness, and the in-app `Pull Recommended Models` action.
 
+The modal now also keeps the choice between `Guided` and `Advanced` visible. Guided mode favors environment profiles and safer defaults, while Advanced mode exposes lower-level runtime strategy, provider, and research-search controls directly.
+
 ## Top navigation
 
 The sticky top bar gives you fast movement across:
@@ -78,6 +80,7 @@ The guided wizard also keeps the live summary rail and step actions pinned insid
 The maintenance section sits below the workflow library and groups operational tasks that matter after initial setup:
 
 - readiness centre checks
+- the `Run Setup` re-entry path for reopening guided setup later
 - Git readiness and installer details when Git is missing
 - local runtime actions such as installing Ollama, starting Ollama, and pulling recommended local models
 - optional CLI link management for exposing `maabarium` in your shell

@@ -35,6 +35,24 @@ cargo run -p maabarium-cli -- status --db data/maabarium.db
 
 Those commands are most relevant for contributors and advanced operators.
 
+## CLI setup commands
+
+The guided setup work is also exposed through the CLI when you want an inspectable readiness pass without opening the desktop shell.
+
+```bash
+cargo run -p maabarium-cli -- setup --check
+cargo run -p maabarium-cli -- setup --check --json
+```
+
+Use these commands when you want to:
+
+- inspect Git readiness and installability
+- confirm provider and local-runtime prerequisites before a real run
+- integrate setup checks into local scripts or automation
+- capture machine-readable readiness output with `--json`
+
+The desktop app remains the best interactive surface, but the CLI setup path gives contributors and automation-heavy operators the same readiness model in terminal form.
+
 ## CLI self-update commands
 
 If you are using a packaged or seeded CLI install rather than `cargo run`, the CLI can also inspect and apply its own published updates.
@@ -64,5 +82,7 @@ The desktop setup flow is also the simplest way to manage the optional shell lin
 - `Install CLI Link` creates or refreshes the managed symlink
 - `Remove CLI Link` removes only that shell link
 - the app warns if `~/.local/bin` is not exported in your shell `PATH`
+
+The desktop setup modal also keeps Guided and Advanced operator paths in one place, including environment profiles, remote-provider validation, workspace auto-detection, and the in-context `Run Setup` re-entry path from Maintenance.
 
 Removing the `.app` bundle does not remove the shell link automatically, because that integration lives outside the app bundle.
