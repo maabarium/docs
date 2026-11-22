@@ -15,7 +15,7 @@
   --sl-font-system: var(--font-ui);
   --sl-font-system-mono: var(--font-data);
   --sl-color-accent-low: #0f3b41;
-  --sl-color-accent: #2dd4bf;
+  --sl-color-accent: #a8d5c5;
   --sl-color-accent-high: #a7f3d0;
   --sl-color-white: #f8fafc;
   --sl-color-gray-1: #e2e8f0;
@@ -25,7 +25,7 @@
   --sl-color-gray-5: #334155;
   --sl-color-gray-6: #1e293b;
   --sl-color-black: #050b14;
-  --sl-color-bg: #0b1220;
+  --sl-color-bg: #152823;
   --sl-color-bg-nav: rgba(11, 18, 32, 0.78);
   --sl-color-bg-sidebar: rgba(9, 17, 31, 0.92);
   --sl-color-text-accent: #f8fafc;
@@ -35,12 +35,12 @@
   --sl-text-code: 0.95rem;
   --sl-nav-height: 5rem;
   color: #e2e8f0;
-  background: #0b1220;
+  background: #152823;
 }
 
 :root[data-theme="light"] {
   --sl-color-accent-low: #0f3b41;
-  --sl-color-accent: #2dd4bf;
+  --sl-color-accent: #a8d5c5;
   --sl-color-accent-high: #a7f3d0;
   --sl-color-white: #f8fafc;
   --sl-color-gray-1: #e2e8f0;
@@ -50,7 +50,7 @@
   --sl-color-gray-5: #334155;
   --sl-color-gray-6: #1e293b;
   --sl-color-black: #050b14;
-  --sl-color-bg: #0b1220;
+  --sl-color-bg: #152823;
   --sl-color-bg-nav: rgba(11, 18, 32, 0.78);
   --sl-color-bg-sidebar: rgba(9, 17, 31, 0.92);
   --sl-color-text-accent: #f8fafc;
@@ -76,7 +76,7 @@ body {
       rgba(71, 85, 105, 0.16),
       transparent 30%
     ),
-    linear-gradient(180deg, #050b14 0%, #0b1220 32%, #0d1117 100%);
+    linear-gradient(180deg, #101f1b 0%, #152823 32%, #101c19 100%);
 }
 
 body::before {

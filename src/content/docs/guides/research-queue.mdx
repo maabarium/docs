@@ -1,0 +1,24 @@
+---
+title: Research queue and review
+description: Set up bounded research, check local evidence, and review the results.
+---
+
+## Set up a run
+
+In **Research queue**, choose your provider and check that the local subscription worker can use it. Configure the ordered provider steps and choose how often to pause for review. The worker can advance between those checkpoints, but the final review still requires a person. A failed job does not advance.
+
+Only enter public material you are willing to send to the selected providers. Local benchmarks use no model tokens. Subscription jobs do not switch to a paid API; configure any paid route explicitly.
+
+## Run a trusted local benchmark
+
+Choose a runner and a separate auditor. Only choose programs you trust: they run with your account's permissions. Maabarium fingerprints both automatically and checks those identities again before running.
+
+If you turn on automatic AI evaluation, Maabarium sends the approved public brief and the local pass/fail result. It does not send the raw benchmark evidence or file paths. The AI review cannot change the local verdict. An adaptive run can select a preapproved successor based on the local audit; a held successor needs approval before it starts.
+
+## Review and report
+
+Choose **Approve and continue** when you want to start the next configured step, **Approve and close review** to finish the final checkpoint, or **Stop** to prevent any follow-up. These actions are available in the app.
+
+Use **Research overview and system activity** to switch between runs, see job and token trends, and review available benchmark metrics. Missing token counts are not zero. Cache and reasoning counts may already be included in input or output, and tokens reported for a run do not measure remaining subscription allowance.
+
+On macOS, use the Maabarium status icon to reopen the console or quit, and the application menu to check for updates.
