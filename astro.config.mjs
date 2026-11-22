@@ -19,10 +19,10 @@ export default defineConfig({
         SiteTitle: "./src/components/starlight/SiteTitle.astro",
       },
       logo: {
-        src: "./public/images/maabarium-logo.png",
+        src: "./public/images/specimen.svg",
         alt: "Maabarium logo",
       },
-      favicon: "/images/maabarium-logo.png",
+      favicon: "/images/specimen.svg",
       titleDelimiter: "|",
       disable404Route: true,
       customCss: ["./src/styles/tailwind.css", "./src/styles/custom.css"],
@@ -59,6 +59,7 @@ export default defineConfig({
           label: "Guides",
           items: [
             { slug: "guides/desktop-console", label: "Desktop Console" },
+            { slug: "guides/research-queue", label: "Research Queue and Review" },
             {
               slug: "guides/workflows-and-blueprints",
               label: "Workflows and Blueprints",
@@ -122,7 +123,7 @@ export default defineConfig({
           tag: "link",
           attrs: {
             rel: "apple-touch-icon",
-            href: "/images/maabarium-logo.png",
+            href: "/images/specimen.svg",
           },
         },
       ],
